@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'categoria',
     'cuentas',
+    'store',
 ]
 
 MIDDLEWARE = [
@@ -65,6 +66,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'categoria.context_processors.menu_links',
             ],
         },
     },
@@ -120,11 +122,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/' # CHECK THIS
+STATIC_URL = 'static/' # CHECK
 STATIC_ROOT = BASE_DIR  /'static'
 STATICFILES_DIRS = [
      'TodoTecno/static'
 ]
+
+MEDIA_URL = 'media/' # CHECK
+MEDIA_ROOT = BASE_DIR / 'media' # CHECK
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
