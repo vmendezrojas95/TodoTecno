@@ -17,6 +17,7 @@
     </article> <!-- gallery-wrap .end// -->
             </aside>
             <main class="col-md-6 border-left">
+   <form action="{% url 'add_cart' single_product.id %}" method="get">          
     <article class="content-body">
     
     <h2 class="title">{{ single_product.producto_nombre }}</h2>
@@ -31,40 +32,24 @@
     <hr>
         <div class="row">
             <div class="item-option-select">
-                <h6>Choose Color</h6>
-                <div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
-                  <label class="btn btn-light">
-                    <input type="radio" name="radio_color"> Silver
-                  </label>
-                  <label class="btn btn-light">
-                    <input type="radio" name="radio_color" > Gray
-                  </label>
-                  <label class="btn btn-light active">
-                    <input type="radio" name="radio_color checked"> Gold
-                  </label>
-                  <label class="btn btn-light">
-                    <input type="radio" name="radio_color"> Black
-                  </label>
-                </div> 
+                <h6>Seleccione un Color</h6>
+                <select name="color" class="form-control">
+                    <option value="red">Rojo</option>
+                    <option value="blue">Azul</option>
+                    <option value="green">Verde</option>
+                    <option value="yellow">Amarillo</option>
+                </select>
             </div>
         </div> <!-- row.// -->
         <div class="row">
             <div class="item-option-select">
-                <h6>Select Size</h6>
-                <div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
-                  <label class="btn btn-light">
-                    <input type="radio" name="radio_color"> S
-                  </label>
-                  <label class="btn btn-light active">
-                    <input type="radio" name="radio_color" checked> M
-                  </label>
-                  <label class="btn btn-light">
-                    <input type="radio" name="radio_color"> L
-                  </label>
-                  <label class="btn btn-light">
-                    <input type="radio" name="radio_color"> XL
-                  </label>
-                </div> 
+                <h6>Seleccione Talle</h6>
+                <select name="talla" class="form-control">
+                    <option value="small">Small</option>
+                    <option value="medium">Medium</option>
+                    <option value="large">Large</option>
+                    <option value="x-large">X-Large</option>
+                </select>
             </div>
         </div> <!-- row.// -->
         <hr>
@@ -73,18 +58,27 @@
             <div class="alert alert-danger" role="alert">
                 <strong>¡Lo sentimos!</strong> Este producto no se encuentra disponible o no tenemos Stock.
             </div>
-        {% elif single_product.producto.stock <= 3 and single_product.producto.stock > 0 %}
-            <div class="alert alert-warning" role="alert">
-                <strong>¡Atención!</strong> Este producto se encuentra en Stock Crítico.
-            </div>
         {% else %}
+
+            {% if in_cart %}
+
+                <div class="alert alert-warning" role="alert">
+                    <strong>¡Atención!</strong> Este producto ya se encuentra en el carrito.
+                </div>
+                <a href="#" class="btn  btn-success"> <span class="text">Producto Agregado</span> <i class="fas fa-check"></i>  </a>
+                <a href="{% url 'cart' %}" class="btn  btn-outline-primary"> <span class="text">Ver Carrito</span> <i class="fas fa-eye"></i>  </a>
+
+            {% else %}
+
             <div class="alert alert-success" role="alert">
                 <strong>Tenemos Stock!</strong> Este producto se encuentra disponible.
             </div>
-            <a href="./product-detail.html" class="btn  btn-primary"> <span class="text">Agregar al Carrito</span> <i class="fas fa-shopping-cart"></i>  </a>
+            <button type="submit" class="btn  btn-primary"> <span class="text">Agregar al Carrito</span> <i class="fas fa-shopping-cart"></i>  </button>
+            {% endif %}
         {% endif %}
         
     </article> <!-- product-info-aside .// -->
+</form> 
             </main> <!-- col.// -->
         </div> <!-- row.// -->
     </div> <!-- card.// -->

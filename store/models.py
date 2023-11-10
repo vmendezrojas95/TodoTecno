@@ -30,5 +30,25 @@ class Productos(models.Model):
     
     def __str__(self):
         return self.producto_nombre
-    
 
+
+variation_category_choice = (
+    ('color', 'color'),
+    ('talla', 'talla'),
+)
+    
+class Variation(models.Model):
+    producto = models.ForeignKey(Productos, on_delete=models.CASCADE)
+    variation_category = models.CharField(max_length=150, choices=variation_category_choice)
+    variation_name = models.CharField(max_length=50)
+    variation_value = models.CharField(max_length=50)
+    created_date = models.DateTimeField(auto_now_add=True)
+    modified_date = models.DateTimeField(auto_now=True)
+    is_active = models.BooleanField(default=True)
+
+    class Meta:
+        verbose_name = 'Variacion'
+        verbose_name_plural = 'Variaciones'
+
+    def __unicode__(self):
+        return self.producto

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Productos
+from .models import Productos, Variation
 
 # Register your models here.
 
@@ -8,4 +8,7 @@ class ProductosAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('producto_nombre',)}
     readonly_fields = ('created_date', 'modified_date')
 
+admin.site.site_header = 'Administracion de Tienda'
 admin.site.register(Productos, ProductosAdmin)
+admin.site.register(Variation)
+
