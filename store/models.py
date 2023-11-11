@@ -32,6 +32,14 @@ class Productos(models.Model):
         return self.producto_nombre
 
 
+class VariationManager(models.Manager):
+    def colors(self):
+        return super(VariationManager, self).filter(variation_category='color', is_active=True)
+
+    def tallas(self):
+        return super(VariationManager, self).filter(variation_category='talla', is_active=True)
+
+
 variation_category_choice = (
     ('color', 'color'),
     ('talla', 'talla'),
@@ -46,9 +54,11 @@ class Variation(models.Model):
     modified_date = models.DateTimeField(auto_now=True)
     is_active = models.BooleanField(default=True)
 
+    objects = VariationManager()
+
     class Meta:
         verbose_name = 'Variacion'
         verbose_name_plural = 'Variaciones'
 
-    def __unicode__(self):
-        return self.producto
+    def __str__(self):
+        return self.variation_category + ' : ' + self.variation_value

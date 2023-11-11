@@ -8,7 +8,13 @@ class ProductosAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('producto_nombre',)}
     readonly_fields = ('created_date', 'modified_date')
 
+class VariationAdmin(admin.ModelAdmin):
+    list_display = ('producto', 'variation_category', 'variation_name', 'variation_value', 'is_active')
+    list_editable = ('is_active',)
+    list_filter = ('producto', 'variation_category', 'variation_name', 'variation_value', 'is_active')
+    #list_per_page = 50
+
 admin.site.site_header = 'Administracion de Tienda'
 admin.site.register(Productos, ProductosAdmin)
-admin.site.register(Variation)
+admin.site.register(Variation, VariationAdmin)
 

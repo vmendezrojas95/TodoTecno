@@ -17,7 +17,8 @@
     </article> <!-- gallery-wrap .end// -->
             </aside>
             <main class="col-md-6 border-left">
-   <form action="{% url 'add_cart' single_product.id %}" method="get">          
+   <form action="{% url 'add_cart' single_product.id %}" method="POST">
+    {% csrf_token %}          
     <article class="content-body">
     
     <h2 class="title">{{ single_product.producto_nombre }}</h2>
@@ -33,22 +34,22 @@
         <div class="row">
             <div class="item-option-select">
                 <h6>Seleccione un Color</h6>
-                <select name="color" class="form-control">
-                    <option value="red">Rojo</option>
-                    <option value="blue">Azul</option>
-                    <option value="green">Verde</option>
-                    <option value="yellow">Amarillo</option>
+                <select name="color" class="form-control" required>
+                    <option value="" disabled selected>Seleccione</option>
+                    {% for i in single_product.variation_set.colors %}
+                    <option value="{{ i.variation_value | lower }}">{{ i.variation_value | capfirst }}</option>
+                    {% endfor %}
                 </select>
             </div>
         </div> <!-- row.// -->
         <div class="row">
             <div class="item-option-select">
                 <h6>Seleccione Talle</h6>
-                <select name="talla" class="form-control">
-                    <option value="small">Small</option>
-                    <option value="medium">Medium</option>
-                    <option value="large">Large</option>
-                    <option value="x-large">X-Large</option>
+                <select name="talla" class="form-control" required>
+                    <option value="" disabled selected>Seleccione</option>
+                    {% for i in single_product.variation_set.tallas %}
+                    <option value="{{ i.variation_value | lower }}">{{ i.variation_value | capfirst}}</option>
+                    {% endfor %}
                 </select>
             </div>
         </div> <!-- row.// -->
@@ -59,22 +60,11 @@
                 <strong>¡Lo sentimos!</strong> Este producto no se encuentra disponible o no tenemos Stock.
             </div>
         {% else %}
-
-            {% if in_cart %}
-
-                <div class="alert alert-warning" role="alert">
-                    <strong>¡Atención!</strong> Este producto ya se encuentra en el carrito.
-                </div>
-                <a href="#" class="btn  btn-success"> <span class="text">Producto Agregado</span> <i class="fas fa-check"></i>  </a>
-                <a href="{% url 'cart' %}" class="btn  btn-outline-primary"> <span class="text">Ver Carrito</span> <i class="fas fa-eye"></i>  </a>
-
-            {% else %}
-
-            <div class="alert alert-success" role="alert">
-                <strong>Tenemos Stock!</strong> Este producto se encuentra disponible.
-            </div>
-            <button type="submit" class="btn  btn-primary"> <span class="text">Agregar al Carrito</span> <i class="fas fa-shopping-cart"></i>  </button>
-            {% endif %}
+        <div class="alert alert-success" role="alert">
+            <strong>Tenemos Stock!</strong> Este producto se encuentra disponible.
+        </div>
+        <button type="submit" class="btn  btn-primary"> <span class="text">Agregar al Carrito</span> <i class="fas fa-shopping-cart"></i>  </button>
+            
         {% endif %}
         
     </article> <!-- product-info-aside .// -->
