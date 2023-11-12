@@ -4,6 +4,20 @@
 
 <!-- ========================= SECTION CONTENT ========================= -->
 <section class="section-conten padding-y" style="min-height:84vh">
+  # simular un login
+    {% if request.GET.command == 'verification' %}
+    <div class="alert alert-success" role="alert">
+        <h4 class="container mx-auto alert alert-info" role="alert" style="max-width: 380px; margin-top: 100px;">
+          Muchas Gracias por registrarte en nuestra pagina.
+          <br>
+          Te enviamos un email para que verifiques tu cuenta. [{{ request.GET.email }}]
+        </h4>
+        <p>Ya podes iniciar sesion con tu cuenta si ya verificaste tu cuenta. <a href="{% url 'login' %}"> Iniciar Sesion</a></p>
+        <a href="{% url 'login' %}"></a>
+        <hr>
+        <p class="mb-0">Gracias por visitar nuestra pagina.</p>
+    </div>
+      {% else %}
 
     <!-- ============================ COMPONENT LOGIN   ================================= -->
         <div class="card mx-auto" style="max-width: 380px; margin-top:100px;">
@@ -21,7 +35,7 @@
               </div> <!-- form-group// -->
               
               <div class="form-group">
-                  <a href="#" class="float-right">Olvidaste tu password?</a> 
+                  <a href="#" class="float-right">Olvidaste tu Contraseña?</a> 
                
               </div> <!-- form-group form-check .// -->
               <div class="form-group">
@@ -34,7 +48,7 @@
          <p class="text-center mt-4">No tenes una cuenta? <a href="{% url 'register' %}">Registrate</a></p>
          <br><br>
     <!-- ============================ COMPONENT LOGIN  END.// ================================= -->
-    
+      {% endif %}
     
     </section>
     <!-- ========================= SECTION CONTENT END// ========================= -->
