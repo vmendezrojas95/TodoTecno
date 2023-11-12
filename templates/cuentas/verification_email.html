@@ -1,0 +1,10 @@
+{% autoescape off %}
+
+Hola {{ user.username }},
+Por favor, haz click en el siguiente enlace para verificar tu cuenta:
+
+http://{{ domain }}{% url 'activate' uidb64=uid token=token %}
+
+De parte del equipo de AllTech, gracias por registrarte!
+
+{% endautoescape %}
