@@ -1,0 +1,13 @@
+Fonts used in this design:
+
+Font: Poppins
+Author: Indian Type Foundry,Jonny Pinhorn
+Url: https://fonts.google.com/specimen/Poppins
+
+Font: Anton
+Author: Vernon Adams
+Url: https://fonts.google.com/specimen/Anton
+
+Font: Style Script
+Author: Robert Leuschke
+Url: https://fonts.google.com/specimen/Style+Script

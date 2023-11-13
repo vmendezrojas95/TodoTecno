@@ -69,8 +69,6 @@
         </div> <!-- col.// -->
         <div class="col-lg-3 col-sm-6 col-8 order-2 order-lg-3">
                     <div class="d-flex justify-content-end mb-3 mb-lg-0">
-                        <p>User ID: {{ user.id }}</p>
-                        <p>{{ user }}</p>
                         {% if user.is_authenticated %}
                             <div class="widget-header">
                                 <small class="title text-muted">Bienvenido {{ user.first_name }}!</small>
