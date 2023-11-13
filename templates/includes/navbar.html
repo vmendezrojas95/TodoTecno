@@ -69,23 +69,24 @@
         </div> <!-- col.// -->
         <div class="col-lg-3 col-sm-6 col-8 order-2 order-lg-3">
                     <div class="d-flex justify-content-end mb-3 mb-lg-0">
-                        
-                        {% if not request.user.is_authenticated %}
-                        <div class="widget-header">
-                            <small class="title text-muted">Bienvenido visitante!</small>
+                        <p>User ID: {{ user.id }}</p>
+                        <p>{{ user }}</p>
+                        {% if user.is_authenticated %}
+                            <div class="widget-header">
+                                <small class="title text-muted">Bienvenido {{ user.first_name }}!</small>
                             <div> 
-                                <a href="{% url 'login' %}">Iniciar Sesion</a> <span class="dark-transp"> | </span>
-                                <a href="{% url 'register' %}"> Registrarse</a>
+                            <a href="#">Panel de Control</a> <span class="dark-transp"> | </span>
+                            <a href="{% url 'logout' %}"> Cerrar Sesion</a>
                             </div>
-                        </div>
+                         </div>
                         {% else %}
-                        <div class="widget-header">
-                            <small class="title text-muted">Bienvenido {{user.first_name}}!</small>
+                            <div class="widget-header">
+                                <small class="title text-muted">Bienvenido visitante!</small>
                             <div> 
-                                <a href="#">Panel de Control</a> <span class="dark-transp"> | </span>
-                                <a href="{% url 'logout' %}"> Cerrar Sesion</a>
+                            <a href="{% url 'login' %}">Iniciar Sesion</a> <span class="dark-transp"> | </span>
+                            <a href="{% url 'register' %}"> Registrarse</a>
+                         </div>
                             </div>
-                        </div>
                         {% endif %}
 
 

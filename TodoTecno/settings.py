@@ -54,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    #'cuentas.middleware.UserMiddleware',
 ]
 
 ROOT_URLCONF = 'TodoTecno.urls'
@@ -149,3 +150,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTHENTICATION_BACKENDS = [  
+    'django.contrib.auth.backends.ModelBackend',  # Mantén el backend predeterminado
+    # Otros backends si es necesario
+]

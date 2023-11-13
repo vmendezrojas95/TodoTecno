@@ -66,10 +66,12 @@ def login(request):
         password = request.POST['password']
         #print(email, password)
         user = auth.authenticate(email=email, password=password)
+        print(f"User authenticated: {user}")
 
 
         if user is not None:
-            messages.success(request, 'Login exitoso')
+            #messages.success(request, 'Login exitoso')
+            auth.login(request, user)
             return redirect('home')
         else:
             messages.error(request, 'Credenciales incorrectas')
